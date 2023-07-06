@@ -1,26 +1,35 @@
-import { Head } from '$fresh/runtime.ts';
-import { useSignal } from '@preact/signals';
-import Counter from '../islands/Counter.tsx';
+import { Handlers, PageProps } from '$fresh/server.ts';
+import { listPosts, Post } from '../utils/posts.ts';
+import { State } from '../utils/state.ts';
+import { Container } from '../components/Container.tsx';
+import { HomeHeader } from '../components/HomeHeader.tsx';
+import { PostPreview } from '../components/PostPreview.tsx';
 
-export default function Home() {
-  const count = useSignal(3);
+interface Data extends State {
+  posts: Post[];
+}
+
+export const handler: Handlers<Data, State> = {
+  async GET(_req, ctx) {
+    const posts = await listPosts();
+    return ctx.render({ ...ctx.state, posts });
+  },
+};
+
+export default function Home(props: PageProps<Data>) {
+  const { posts } = props.data;
   return (
     <>
-      <Head>
-        <title>Fresh App</title>
-      </Head>
-      <div class='p-4 mx-auto max-w-screen-md '>
-        <img
-          src='/logo.svg'
-          class='w-32 h-32'
-          alt='the fresh logo: a sliced lemon dripping with juice'
-        />
-        <p class='my-6'>
-          Welcome to `fresh`. Try updating this message in the
-          ./routes/index.tsx file, and refresh.
-        </p>
-        <Counter count={count} />
-      </div>
+      <HomeHeader />
+      <main>
+        <Container>
+          <ul class='mt-16'>
+            {posts.map((post) => (
+              <PostPreview post={post} />
+            ))}
+          </ul>
+        </Container>
+      </main>
     </>
   );
 }
