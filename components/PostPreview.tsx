@@ -3,7 +3,7 @@ import { Post } from '../utils/posts.ts';
 export function PostPreview(props: { post: Post }) {
   const { post } = props;
   return (
-    <li class='border-t'>
+    <li class='border-t border-gray-700'>
       <a href={`/blog/${post.slug}`} class='py-12 group grid sm:grid-cols-3'>
         <time>
           {new Date(post.publishedAt).toLocaleDateString('en-us', {

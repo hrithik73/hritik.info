@@ -5,5 +5,9 @@ type Props = {
 };
 
 export function Container(props: Props) {
-  return <div class='px-4 mx-auto max-w-screen-md'>{props.children}</div>;
+  return (
+    <div class='px-4 mx-auto max-w-screen-md bg-black text-white'>
+      {props.children}
+    </div>
+  );
 }

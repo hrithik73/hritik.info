@@ -6,6 +6,16 @@ export const site = {
   copyrightName: "hritik.info",
   // The url of the source code for the site, used in the footer.
   viewSourceUrl: "https://github.com/hrithik73/hritik.info",
+  navLinks: [
+    {
+      label: "Projects",
+      link: "/projects",
+    },
+    {
+      label: "Blog",
+      link: "/blog",
+    },
+  ],
 };
 
 export const settings = {
