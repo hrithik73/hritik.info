@@ -15,7 +15,7 @@ published_at: 5 July 2023
 
 ###### h6 Heading
 
-```sh
+```js
 npm run start
 ```
 

@@ -9,15 +9,15 @@ export function Header() {
           href='/'
           class='text-xl font-bold text-white hover:text-underline flex flex-row justify-center items-center'
         >
-          <IconLoaderQuarter />
+          <IconLoaderQuarter color='red' />
           HS
         </a>
       </div>
-      <div class='hidden sm:flex'>
+      <div class='flex'>
         {site.navLinks.map((item) => {
           return (
             <a
-              className='text-md font-bold text-white hover:text-underline mx-2'
+              className='text-sm font-bold text-white hover:text-underline mx-2'
               href={item.link}
             >
               {item.label}
