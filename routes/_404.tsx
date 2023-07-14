@@ -6,7 +6,6 @@ export function ServerCodePage(props: {
 }) {
   return (
     <>
-      <Header />
       <section class='w-full flex items-center justify-center'>
         <div class='text-center'>
           <h1 class='text-6xl md:text-9xl font-extrabold'>
