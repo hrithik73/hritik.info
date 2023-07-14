@@ -7,7 +7,7 @@ export function Header() {
       <div class='px-4 max-w-screen-md'>
         <a
           href='/'
-          class='text-xl font-bold text-white hover:text-underline flex flex-row justify-center items-center'
+          class='text-xl font-bold text-white flex flex-row justify-center items-center'
         >
           <IconLoaderQuarter color='red' />
           HS
