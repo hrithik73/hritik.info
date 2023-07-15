@@ -4,12 +4,13 @@ import IconBrandInstagram from 'https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/b
 
 import { Container } from '../components/Container.tsx';
 import Divider from '../components/Divider.tsx';
+import { socialData } from '../data/site.ts';
 
 const HomePage = () => {
   return (
     <main>
       <Container>
-        <div class=' mt-5'>
+        <div class='mt-5'>
           <h4 class='text-xl'>Hello, I am </h4>
           <h1 class='text-5xl font-bold mt-2'>Hritik Singh</h1>
           <h3 class='mt-5'>
@@ -19,7 +20,12 @@ const HomePage = () => {
           <Divider />
           <h3>
             I'm currently working at{' '}
-            <a class='text-red-500' href={'https://indianic.com'}>
+            <a
+              class='text-red-500'
+              href={'https://indianic.com'}
+              target='_blank'
+              rel='noreferrer'
+            >
               Indianic
             </a>{' '}
             as a Software Engineer, building cross-platform mobile application
@@ -33,21 +39,39 @@ const HomePage = () => {
             <a href='/projects' class='cursor-pointer text-red-500'>
               Project
             </a>{' '}
-            page
+            page and Write{' '}
+            <a href='/blog' class='cursor-pointer text-red-500'>
+              Blogs
+            </a>
           </h3>
           <h3 class='text-2xl font-bold mt-16'>On the web</h3>
           <Divider />
-          <a class='flex flex-row gap-2 items-center cursor-pointer hover:underline'>
+          <a
+            href={socialData.github}
+            target='_blank'
+            rel='noreferrer'
+            class='flex flex-row gap-2 items-center cursor-pointer hover:underline'
+          >
             <IconBrandTwitter class='w-5 h-5' />
             hrithik73
           </a>
-          <a class='flex flex-row gap-2 items-center cursor-pointer my-2 hover:underline'>
+          <a
+            href={socialData.twitter}
+            target='_blank'
+            rel='noreferrer'
+            class='flex flex-row gap-2 items-center cursor-pointer my-2 hover:underline'
+          >
             <IconBrandGithub class='w-5 h-5' />
-            hrithik73
+            hrithik73_
           </a>
-          <a class='flex flex-row gap-2 items-center cursor-pointer my-2 hover:underline'>
+          <a
+            href={socialData.instagram}
+            target='_blank'
+            rel='noreferrer'
+            class='flex flex-row gap-2 items-center cursor-pointer my-2 hover:underline'
+          >
             <IconBrandInstagram class='w-5 h-5' />
-            hrithik73
+            hrithik73_
           </a>
         </div>
       </Container>

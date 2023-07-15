@@ -1,11 +1,13 @@
 import IconBrandGithub from 'https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/brand-github.tsx';
 import IconExternalLink from 'https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/external-link.tsx';
 import { Container } from '../../components/Container.tsx';
+import { projects } from '../../data/site.ts';
+import Divider from '../../components/Divider.tsx';
 
 interface IProjectCardProps {
   title: string;
-  imgsource: string;
   githubLink: string;
+  link: string;
   imgSrc: string | undefined;
   description: string;
   techStack: string;
@@ -13,8 +15,8 @@ interface IProjectCardProps {
 
 const ProjectCard = ({
   title,
-  imgsource,
   githubLink,
+  link,
   imgSrc,
   description,
   techStack,
@@ -37,7 +39,7 @@ const ProjectCard = ({
         <a target='_blank' rel='noreferrer' href={githubLink}>
           <IconBrandGithub className='hover:underline' />
         </a>
-        <a>
+        <a target='_blank' rel='noreferrer' href={link}>
           <IconExternalLink />
         </a>
       </div>
@@ -45,48 +47,19 @@ const ProjectCard = ({
   );
 };
 
-const projects = [
-  {
-    id: 1,
-    title: 'Youtube Clone in React Native',
-    techStack: 'React Native(Expo), Youtube API V3',
-    link: '',
-    github: 'https://github.com/hrithik73/youtube-clone',
-    description: '',
-  },
-  {
-    id: 2,
-    title: 'Dukan App Clone',
-    techStack: 'React Native Expo',
-    link: '',
-    github: 'https://github.com/hrithik73/dukaan-app-clone',
-    description: '',
-  },
-  {
-    id: '',
-    title: 'RN Starter',
-    techStack: 'React Native',
-    link: '',
-    github: 'https://github.com/hrithik73/rn-starter',
-    description:
-      'An Opinionated react-native templated with commonly used libraries to kickstart your react-native app development',
-    imgSrc:
-      'https://raw.githubusercontent.com/hrithik73/rn-starter/main/template/src/assets/images/logo.png',
-  },
-];
-
 export default function Projects() {
   return (
     <main>
       <Container>
-        <h1 class='text-xl'>Projects</h1>
-        <p>This is the project page.</p>
+        <h1 class='text-3xl'>Projects</h1>
+        <p class='text-sm pt-2'>Personal Projects i have created.</p>
+        <Divider />
         <div class='grid grid-cols-1 sm:grid-cols-2'>
           {projects.map((item) => {
             return (
               <ProjectCard
                 title={item.title}
-                imgsource={item.link}
+                link={item.link}
                 githubLink={item.github}
                 imgSrc={item.imgSrc}
                 description={item.description}
