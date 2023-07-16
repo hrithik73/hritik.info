@@ -45,7 +45,7 @@ export default function App({ Component }: AppProps) {
         <Header />
         <Component />
         <Footer />
-        <TailwindIndicator />
+        {/* <TailwindIndicator /> */}
       </div>
     </>
   );
