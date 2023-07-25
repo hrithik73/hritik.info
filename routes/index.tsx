@@ -14,7 +14,7 @@ const HomePage = () => {
           <h4 class='text-xl'>Hello, I am </h4>
           <h1 class='text-5xl font-bold mt-2'>Hritik Singh</h1>
           <h3 class='mt-5'>
-            I make web and mobile application mostly using javascript.
+            I make web and mobile application using javascript.
           </h3>
           <h3 class='text-2xl font-bold mt-14'>Work</h3>
           <Divider />
@@ -37,7 +37,7 @@ const HomePage = () => {
             Apart from my work, I make side projects for fun you can check out
             some of them of{' '}
             <a href='/projects' class='cursor-pointer text-red-500'>
-              Project
+              Projects
             </a>{' '}
             page and Write{' '}
             <a href='/blog' class='cursor-pointer text-red-500'>
