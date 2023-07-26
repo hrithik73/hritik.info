@@ -34,12 +34,11 @@ const HomePage = () => {
           <h3 class='text-2xl font-bold mt-14'>Side Projects</h3>
           <Divider />
           <h3>
-            Apart from my work, I make side projects for fun you can check out
-            some of them of{' '}
+            Apart from my main work, I make side{' '}
             <a href='/projects' class='cursor-pointer text-red-500'>
               Projects
             </a>{' '}
-            page and Write{' '}
+            for fun and Write{' '}
             <a href='/blog' class='cursor-pointer text-red-500'>
               Blogs
             </a>

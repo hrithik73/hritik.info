@@ -22,6 +22,7 @@ export default function Blog(props: PageProps<Data>) {
     <>
       <main>
         <Container>
+          <h3 class='text-4xl font-bold'>Blogs</h3>
           <ul class='mt-16'>
             {posts.map((post) => (
               <PostPreview post={post} />

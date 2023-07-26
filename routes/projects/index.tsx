@@ -24,12 +24,21 @@ const ProjectCard = ({
   return (
     <div class='flex flex-col h-50 m-10 border-gray-800 border-1 rounded-md items-center justify-center cursor-pointer max-w-md'>
       <div class='flex flex-col items-center justify-center m-2 '>
-        <img
-          class='h-40 w-40 object-contain rounded-md bg-gray-800'
-          src={imgSrc}
-          alt='project card image'
-        />
-        <p class='font-bold text-lg hover:underline my-2'>{title}</p>
+        <a target='_blank' rel='noreferrer' href={link}>
+          <img
+            class='h-40 w-40 object-contain rounded-md bg-gray-800'
+            src={imgSrc}
+            alt='project card image'
+          />
+        </a>
+        <a
+          target='_blank'
+          rel='noreferrer'
+          href={link}
+          class='font-bold text-lg hover:underline my-2'
+        >
+          {title}
+        </a>
         <p class='text-sm text-center '>{description}</p>
       </div>
 
