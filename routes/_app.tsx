@@ -10,6 +10,12 @@ const CSS = `::selection {
   background-color: #fff;
   color: #000;
 }
+article {
+  background-color: #000 !important;
+  color:#fefefe !important
+}
+.markdown-body .highlight pre, .markdown-body pre {
+  background-color: #00060b !important;
 `;
 
 export default function App({ Component }: AppProps) {

@@ -3,7 +3,6 @@ import * as gfm from '$gfm';
 
 import { Container } from '../../components/Container.tsx';
 import { loadPost, Post } from '../../utils/posts.ts';
-import { Header } from '../../components/Header.tsx';
 import { ServerCodePage } from '../_404.tsx';
 
 interface Data {
@@ -34,7 +33,7 @@ export default function PostPage(props: PageProps<Data>) {
         </time>
         <style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
         <article
-          class='mt-12 markdown-bodytext-white '
+          class='mt-12 markdown-body'
           dangerouslySetInnerHTML={{ __html: gfm.render(post.content) }}
         />
       </Container>
