@@ -34,7 +34,7 @@ const HomePage = () => {
           <h3 class='text-2xl font-bold mt-14'>Side Projects</h3>
           <Divider />
           <h3>
-            Apart from my main work, I make side{' '}
+            Apart from my main work, I loves to make side{' '}
             <a href='/projects' class='cursor-pointer text-red-500'>
               Projects
             </a>{' '}

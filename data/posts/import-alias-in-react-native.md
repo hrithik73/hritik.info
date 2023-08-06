@@ -11,7 +11,7 @@ import) in react-native
 When you are working in a large project the local import of your component can
 look something like this
 
-<img src="https://github.com/hrithik73/hritik.info/blob/main/data/assets/import-alias-in-react-native/before.png" height="100px" width="100px">
+<img src="/assets/import-alias-in-react-native/before.png" >
 <!-- [Logo](../assets/import-alias-in-react-native/before.png) -->
 
 This is fine but when project grow mostly developers tends to be confused by the
@@ -20,7 +20,7 @@ the file) and also it looks kind of ugly.
 
 Here is how imports looks after using the import alias
 
-<img src="https://github.com/hrithik73/hritik.info/blob/main/data/assets/import-alias-in-react-native/after.png" height="100px" width="100px">
+<img src="/assets/import-alias-in-react-native/after.png" >
 
 ### So how we configure it in our react-native project?
 
