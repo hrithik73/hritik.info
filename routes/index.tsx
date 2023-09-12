@@ -14,7 +14,9 @@ const HomePage = () => {
           <h4 class='text-xl'>Hello, I am </h4>
           <h1 class='text-5xl font-bold mt-2'>Hritik Singh</h1>
           <h3 class='mt-5'>
-            I make web and mobile application using javascript.
+            Frontend Developer with 2 years of experience building web and
+            mobile apps using react. I am passionate about learning new
+            technologies and building innovative solutions.
           </h3>
           <h3 class='text-2xl font-bold mt-14'>Work</h3>
           <Divider />
