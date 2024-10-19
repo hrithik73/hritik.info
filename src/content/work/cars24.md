@@ -1,7 +1,7 @@
 ---
-company: "Google"
-role: "Staff Software Engineer"
-dateStart: "11/27/2022"
+company: "Cars24"
+role: "SDE-2 (React Native)"
+dateStart: "04/15/2024"
 dateEnd: "Current"
 ---
 
