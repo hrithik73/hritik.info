@@ -43,3 +43,16 @@ export const SOCIALS: Socials = [
     HREF: 'https://www.linkedin.com/in/hrithik73/',
   },
 ];
+
+export const projects = [
+  {
+    name: 'Voy salir',
+    description: 'A social media kind of app for clubs',
+    link: 'https://apps.apple.com/in/app/voy-salir-planes-y-amigos/id1480241417',
+  },
+  {
+    name: 'Pointili',
+    description: 'A CRM app',
+    link: 'https://apps.apple.com/in/app/pointili/id6469307334',
+  },
+];

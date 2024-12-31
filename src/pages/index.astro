@@ -6,6 +6,7 @@ import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import { dateRange } from "@lib/utils";
 import { SITE, HOME, SOCIALS } from "@consts";
+import { projects as localProjects } from "@consts";
 
 const blog = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -39,16 +40,21 @@ const work = await Promise.all(
       <section>
         <article class="space-y-4">
           <p class="animate">
-            I am a passionate mobile app developer , creating smooth mobile apps at
+            I'm a passionate mobile app developer at
             <Link href="https://cars24.com" aria-label="Astro Sphere on Github" external>
-              Cars 24
-            </Link>. with react native 
+              CARS24
+            </Link> crafting smooth, high-performance apps with React Native and occasionally Kotlin and Swift
           <p class="animate">
             Previously I worked at 
-            <Link href="https://www.linkedin.com/in/hritik-jain-b54b3b199/" aria-label="Astro Sphere on Github" external>
+            <Link href="https://www.indianic.com/" aria-label="Astro Sphere on Github" external>
               Indianic
+            </Link> where i workd on diverse apps for clients, including e-commerce, fitness, 
+            <Link href={localProjects[1].link} aria-label="Astro Sphere on Github" external>
+              CRM (pointili)
+            </Link> and social media app for club
+            <Link href={localProjects[0].link} aria-label="Astro Sphere on Github" external>
+            (voy)
             </Link>
-            where i created cool mobile apps for client including ecommerce, fitness ,social media and more.
           </p>
         </article>
       </section>
