@@ -9,18 +9,22 @@ import { SITE, HOME, SOCIALS } from "@consts";
 import { projects as localProjects } from "@consts";
 
 const blog = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
+  .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
 const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
+  .filter((project) => !project.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
-  .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
-  .slice(0,SITE.NUM_WORKS_ON_HOMEPAGE);
+  .sort(
+    (a, b) =>
+      new Date(b.data.dateStart).valueOf() -
+      new Date(a.data.dateStart).valueOf()
+  )
+  .slice(0, SITE.NUM_WORKS_ON_HOMEPAGE);
 
 const work = await Promise.all(
   allwork.map(async (item) => {
@@ -28,124 +32,157 @@ const work = await Promise.all(
     return { ...item, Content };
   })
 );
-
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Hritik <span class="text-xl">👋🏻</span> 
-    </h4>
-    <div class="space-y-16">
-      <section>
-        <article class="space-y-4">
-          <p class="animate">
-            I'm a passionate mobile app developer at
-            <Link href="https://cars24.com" aria-label="CARS24 site link" external>
-              CARS24
-            </Link> crafting smooth, high-performance apps with React Native and occasionally Kotlin and Swift
-          <p class="animate">
-            Previously I worked at 
-            <Link href="https://www.indianic.com/" aria-label="Indianic site link" external>
-              Indianic
-            </Link> where i workd on diverse apps for clients, including e-commerce, fitness, 
-            <Link href={localProjects[1].link} aria-label="Pointili CRM site link" external>
-              CRM (pointili)
-            </Link> and social media app for club
-            <Link href={localProjects[0].link} aria-label="Voy site link" external>
-            (voy)
-            </Link>
-          </p>
-        </article>
+    <!-- Hero Section -->
+    <section class="mb-20">
+      <!-- <h1
+        class="animate text-2xl md:text-2xl font-semibold text-black dark:text-white mb-6 leading-tight"
+      >
+        Hritik Singh, Mobile App Developer
+      </h1> -->
+      <p
+        class="animate text-lg md:text-xl text-black/70 dark:text-white/60 leading-relaxed max-w-2xl"
+      >
+        Mobile app developer with 4+ years of experience building flagship React
+        Native apps. Crafting pixel-perfect, smooth mobile experiences.
+      </p>
+    </section>
+
+    <div class="space-y-20 md:space-y-24">
+      <!-- About -->
+      <section class="animate">
+        <p
+          class="text-base md:text-lg text-black/70 dark:text-white/60 leading-relaxed space-y-4"
+        >
+          <span>
+            Currently building at <Link href="https://cars24.com" external
+              >CARS24</Link
+            >, where I craft high-performance mobile apps with React Native.
+          </span>
+          <span class="block">
+            Previously at <Link href="https://www.indianic.com/" external
+              >Indianic</Link
+            >, I worked on diverse flagship apps including e-commerce, fitness,
+            <Link href={localProjects[1].link} external>CRM solutions</Link>,
+            and
+            <Link href={localProjects[0].link} external>social platforms</Link>.
+          </span>
+        </p>
       </section>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Latest posts
-          </h5>
-          <Link href="/blog">
-            See all posts
-          </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {blog.map(post => (
-            <li>
-              <ArrowCard entry={post} />
-            </li>
-          ))}
+      <!-- Work Experience -->
+      <section class="animate">
+        <h2
+          class="text-sm font-medium text-black/50 dark:text-white/50 uppercase tracking-wider mb-8"
+        >
+          Experience
+        </h2>
+        <ul class="flex flex-col space-y-8">
+          {
+            work.map((entry) => (
+              <li class="border-l-2 border-black/10 dark:border-white/10 pl-6">
+                <div class="text-xs font-medium text-black/50 dark:text-white/50 uppercase tracking-wide mb-2">
+                  {dateRange(entry.data.dateStart, entry.data.dateEnd)}
+                </div>
+                <div class="text-xl font-semibold text-black dark:text-white mb-1">
+                  {entry.data.company}
+                </div>
+                <div class="text-sm text-black/60 dark:text-white/60 mb-4">
+                  {entry.data.role}
+                </div>
+                <div class="text-sm text-black/70 dark:text-white/60 leading-relaxed">
+                  <entry.Content />
+                </div>
+              </li>
+            ))
+          }
         </ul>
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Work Experience
-          </h5>
-          <Link href="/work">
-            See all work
-          </Link>
+        <div class="mt-6">
+          <Link href="/work" class="text-sm"> View all experience → </Link>
         </div>
-        <ul class="flex flex-col space-y-4">
-          {work.map(entry => (
-            <li>
-              <div class="text-sm opacity-75">
-                {dateRange(entry.data.dateStart, entry.data.dateEnd)}
-              </div>
-              <div class="font-semibold text-black dark:text-white">
-                {entry.data.company}
-              </div>
-              <div class="text-sm opacity-75">
-                {entry.data.role}
-              </div>
-              <article>
-                <entry.Content />
-              </article>
-            </li>
-          ))}
-        </ul>
       </section>
 
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Recent projects
-          </h5>
-          <Link href="/projects">
-            See all projects
-          </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {projects.map(project => (
-            <li>
-              <ArrowCard entry={project} />
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section class="animate space-y-4">
-        <h5 class="font-semibold text-black dark:text-white">
-          Let's Connect
-        </h5>
-        <article>
-          <p>
-            If you want to get in touch with me about something or just to say hi,
-            reach out on social media or send me an email.
-          </p>
-        </article>
-        <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
-            <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
+      <!-- Projects -->
+      {
+        projects.length > 0 && (
+          <section class="animate">
+            <h2 class="text-sm font-medium text-black/50 dark:text-white/50 uppercase tracking-wider mb-8">
+              Featured Projects
+            </h2>
+            <ul class="flex flex-col gap-6">
+              {projects.map((project) => (
+                <li>
+                  <ArrowCard entry={project} />
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <Link href="/projects" class="text-sm">
+                View all projects →
               </Link>
-              {"/"}
-            </li>
-          ))}
-          <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
-              {SITE.EMAIL}
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Blog -->
+      {
+        blog.length > 0 && (
+          <section class="animate">
+            <h2 class="text-sm font-medium text-black/50 dark:text-white/50 uppercase tracking-wider mb-8">
+              Writing
+            </h2>
+            <ul class="flex flex-col gap-6">
+              {blog.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6">
+              <Link href="/blog" class="text-sm">
+                View all posts →
+              </Link>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- Connect -->
+      <section
+        class="animate pt-8 border-t border-black/10 dark:border-white/10"
+      >
+        <h2
+          class="text-sm font-medium text-black/50 dark:text-white/50 uppercase tracking-wider mb-6"
+        >
+          Connect
+        </h2>
+        <p class="text-sm text-black/70 dark:text-white/60 mb-6">
+          Let's build something great together.
+        </p>
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {
+            SOCIALS.map((SOCIAL) => (
+              <li>
+                <Link
+                  href={SOCIAL.HREF}
+                  external
+                  aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}
+                >
+                  {SOCIAL.NAME}
+                </Link>
+              </li>
+            ))
+          }
+          <li>
+            <Link
+              href={`mailto:${SITE.EMAIL}`}
+              aria-label={`Email ${SITE.NAME}`}
+            >
+              Email
             </Link>
           </li>
         </ul>

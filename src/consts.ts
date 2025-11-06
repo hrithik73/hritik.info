@@ -9,8 +9,8 @@ export const SITE: Site = {
 };
 
 export const HOME: Metadata = {
-  TITLE: 'Home',
-  DESCRIPTION: "Hritik's personal website.",
+  TITLE: 'Hritik Singh — Mobile App Developer',
+  DESCRIPTION: "Mobile app developer with 4+ years of experience building flagship React Native apps. Crafting pixel-perfect, smooth mobile experiences.",
 };
 
 export const BLOG: Metadata = {
