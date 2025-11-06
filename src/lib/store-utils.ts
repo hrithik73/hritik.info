@@ -92,7 +92,7 @@ export async function fetchPlayStoreData(
       title: app.title || "",
       description: app.description || app.summary || "",
       icon: app.icon || "",
-      developer: app.developer || app.developerName || "",
+      developer: app.developer || "",
     };
   } catch (error) {
     console.error(`Error fetching Play Store data for ${url}:`, error);
