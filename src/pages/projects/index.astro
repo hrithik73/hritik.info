@@ -1,30 +1,159 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import Container from "@components/Container.astro";
-import ArrowCard from "@components/ArrowCard.astro";
 import { PROJECTS } from "@consts";
+import { fetchAppData } from "@lib/store-utils";
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const appLinks = [
+  {
+    title:"Swapp",
+    appStoreLink: "https://apps.apple.com/us/app/swapp-church-app/id1246949512",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.buildingit.swapp&pcampaignid=web_share",
+  },
+  {
+    title: "Voy Salir",
+    appStoreLink: "https://apps.apple.com/in/app/voy-salir-ligar-y-amigos/id1480241417",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.jit.voy",
+  },
+  {
+    title: "Pointili",
+    appStoreLink: "https://apps.apple.com/in/app/pointili/id6469307334",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.pointili.pointiliApp&pcampaignid=web_share",
+  },
+  {
+    title: "CARS24",
+    appStoreLink: "https://apps.apple.com/in/app/cars24-partners/id1061524131", // Replace with actual link
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.cars24.dealerapp&pcampaignid=web_share",
+  },
+  {
+    title: "PokerBaazi",
+    appStoreLink: "https://apps.apple.com/in/app/pokerbaazi/id1369524104",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.baazigames.pokerbaazi.practice&pcampaignid=web_share",
+  },
+  {
+    title: "BhartPe",
+    appStoreLink: "https://apps.apple.com/in/app/bharatpe-upi-credit-rewards/id1586002156",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.postpe.app&pcampaignid=web_share",
+  },
+];
+
+// Fetch app data from store links
+const apps = (await Promise.all(
+  appLinks.map(async (app) => {
+    const storeData = await fetchAppData(
+      app.appStoreLink,
+      app.playStoreLink
+    );
+
+    return {
+      title: storeData.title || app.title, // Fallback to provided title
+      description: storeData.description || "Mobile app",
+      icon: storeData.icon || "",
+      developer: storeData.developer || "",
+      appStoreLink: app.appStoreLink,
+      playStoreLink: app.playStoreLink,
+    };
+  })
+)).reverse();
 ---
 
 <PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
   <Container>
-    <div class="space-y-10">
-      <div class="animate font-semibold text-black dark:text-white">
+    <section class="mb-20">
+      <h1 class="animate text-2xl md:text-3xl font-semibold text-black dark:text-white mb-4">
         Projects
-      </div>
-      <ul class="animate flex flex-col gap-4">
-        {
-          projects.map((project) => (
-            <li>
-              <ArrowCard entry={project}/>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+      </h1>
+      <p class="animate text-base text-black/70 dark:text-white/60 leading-relaxed max-w-2xl">
+        A collection of mobile apps I've built and contributed to.
+      </p>
+    </section>
+
+    <ul class="animate flex flex-col gap-8">
+      {apps.map((app) => (
+        <li>
+          <div class="flex items-start gap-5">
+            <!-- App Icon -->
+            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-black/5 dark:bg-white/5 flex items-center justify-center overflow-hidden border border-black/5 dark:border-white/5">
+              {app.icon ? (
+                <img
+                  src={app.icon}
+                  alt={`${app.title} icon`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="text-lg font-medium text-black/40 dark:text-white/40">
+                  {app.title.charAt(0)}
+                </span>
+              )}
+            </div>
+
+            <!-- App Info -->
+            <div class="flex-1 min-w-0">
+              <h2 class="text-xl font-semibold text-black dark:text-white mb-2">
+                {app.title}
+              </h2>
+              {app.developer && (
+                <p class="text-xs text-black/50 dark:text-white/50 mb-2">
+                  {app.developer}
+                </p>
+              )}
+              <p class="text-sm text-black/60 dark:text-white/60 mb-5 leading-relaxed line-clamp-2">
+                {app.description}
+              </p>
+
+              <!-- Store Links -->
+              <div class="flex flex-wrap gap-6">
+                {app.appStoreLink && (
+                  <a
+                    href={app.appStoreLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4"
+                    >
+                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                      <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    App Store
+                  </a>
+                )}
+                {app.playStoreLink && (
+                  <a
+                    href={app.playStoreLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-sm text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4"
+                    >
+                      <polygon points="5 3 19 12 5 21 5 3" />
+                    </svg>
+                    Play Store
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   </Container>
 </PageLayout>
