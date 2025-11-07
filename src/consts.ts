@@ -31,7 +31,7 @@ export const PROJECTS: Metadata = {
 
 export const SOCIALS: Socials = [
   {
-    NAME: 'twitter-x',
+    NAME: 'x (Previously Twitter)',
     HREF: 'https://twitter.com/hrithik73_',
   },
   {
